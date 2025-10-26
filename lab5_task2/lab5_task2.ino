@@ -28,6 +28,5 @@ void loop() {
     _delay_ms(10);
   }
 
-  // Hold steady for a while
   _delay_ms(1000);
 }
