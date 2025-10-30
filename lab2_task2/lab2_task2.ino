@@ -1,4 +1,4 @@
-void myTask2() {
+void task2() {
   uint8_t R18;
 
   asm volatile (
@@ -18,7 +18,7 @@ void myTask2() {
 
 void setup() {
   Serial.begin(9600);
-  myTask2(); 
+  task2(); 
 }
 
 void loop() {}
