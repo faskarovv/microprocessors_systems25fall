@@ -24,11 +24,11 @@ int main(){
     while(1){
       uint8_t status = twi_wait();
 
-      // ---------------- MASTER → SLAVE WRITE ----------------
+      
         if (status == 0x60) {              // SLA+W received
             TWCR = (1<<TWEN)|(1<<TWINT)|(1<<TWEA);
         }
-        else if (status == 0x80) {         // DATA received
+        else if (status == 0x80) {         // data received
             uint8_t msg = TWDR;
 
             if (msg == led_on)  PORTB |= (1<<PB5);
@@ -37,7 +37,7 @@ int main(){
             TWCR = (1<<TWEN)|(1<<TWINT)|(1<<TWEA);
         }
 
-        // ---------------- MASTER → SLAVE READ ----------------
+      
         else if (status == 0xA8) {         // SLA+R received
             uint8_t btn = !(PIND & (1<<PD2));  // active low
             TWDR = btn ? led_on : led_off;     // load data to send
