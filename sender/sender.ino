@@ -22,7 +22,7 @@ void setup() {
 }
 
 void loop() {
-    uint8_t c = uart_read(); // read from PC via USB (type 1,2,3,4)
+    uint8_t c = uart_read(); 
     if (c == '1' || c == '2' || c == '3' || c == '4') {
         uart_write(c);       // send to Arduino B
     }

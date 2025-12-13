@@ -10,8 +10,8 @@ void setup() {
   Wire.begin();
   TWSR = 0;     // prescaler = 1
 
-  TWBR = 255;  // ~31 kHz
-  // TWBR = 72;   // 100 kHz
+  // TWBR = 255;  // ~31 kHz
+  TWBR = 72;   // 200 kHz
   // TWBR = 12;    // 400 kHz
   // ---------------------------
   delay(500);
