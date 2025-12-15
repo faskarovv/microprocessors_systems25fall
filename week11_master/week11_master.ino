@@ -16,7 +16,7 @@ void SPI_MasterInit(void) {
 }
 
 void SPI_MasterTransmit(unsigned char data) {
-    PORTB &= ~(1 << PB2); //enabling slave
+    PORTB &= ~(1 << PB2); //enabling slave setting low 
 
     SPDR = data;            // start transmission
     while (!(SPSR & (1 << SPIF))); // wait until complete

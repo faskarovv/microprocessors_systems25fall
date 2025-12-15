@@ -1,7 +1,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define slave_adress 0x20
+#define slave_adress 0x20 //my_add on the week12_task5B
 #define led_on  0x01
 #define led_off  0x00
 
