@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <Arduino.h>   // ONLY for Serial Monitor
 
 #define KEY 0xA5
 
@@ -16,23 +17,24 @@ void uart_init(void) {
     UBRR0H = (ubrr >> 8);
     UBRR0L = ubrr;
 
-    UCSR0B = (1 << RXEN0);                 // Enable RX
+    UCSR0B = (1 << RXEN0);
     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
 }
 
 uint8_t uart_receive(void) {
-    while (!(UCSR0A & (1 << RXC0)));   // Wait for full frame
+    while (!(UCSR0A & (1 << RXC0)));
     return UDR0;
 }
 
 int main(void) {
     uart_init();
 
+    Serial.begin(9600);   // For monitor only
+
     while (1) {
         uint8_t cipher = uart_receive();
         uint8_t plain  = decrypt(cipher);
 
-        // place breakpoint here or output via another UART
-        (void)plain;
+        Serial.println(plain);
     }
 }
