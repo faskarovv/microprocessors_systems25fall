@@ -1,5 +1,4 @@
-// Transmitter - Arduino A
-
+//week 10 task3 sender
 void uart_init() {
     UBRR0H = 0;
     UBRR0L = 103;                   // 9600 baud @ 16 MHz
