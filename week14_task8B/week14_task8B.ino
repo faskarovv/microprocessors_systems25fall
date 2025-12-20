@@ -1,5 +1,5 @@
 #include <avr/io.h>
-#include <Arduino.h>   // ONLY for Serial Monitor
+#include <Arduino.h>   //for serial monitor
 
 #define KEY 0xA5
 
@@ -12,17 +12,17 @@ uint8_t decrypt(uint8_t c) {
 }
 
 void uart_init(void) {
-    uint16_t ubrr = 103;
+    uint16_t ubrr = 103; //baud rate 9600 same as sender 
 
     UBRR0H = (ubrr >> 8);
     UBRR0L = ubrr;
 
-    UCSR0B = (1 << RXEN0);
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+    UCSR0B = (1 << RXEN0); //enable reciever
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); //8 bit data frame
 }
 
 uint8_t uart_receive(void) {
-    while (!(UCSR0A & (1 << RXC0)));
+    while (!(UCSR0A & (1 << RXC0))); //waiting for the status flag
     return UDR0;
 }
 

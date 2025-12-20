@@ -4,17 +4,17 @@
 void UART_init() {
     UBRR0H = 0;
     UBRR0L = 103;                        // 9600 baud
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0); //enabeling the tx rx 
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); //bit format 8 bit
 }
 
 uint8_t UART_receive() {
-    while (!(UCSR0A & (1 << RXC0)));
+    while (!(UCSR0A & (1 << RXC0))); //waiting for the status flag
     return UDR0;
 }
 
 void UART_send(uint8_t data) {
-    while (!(UCSR0A & (1 << UDRE0)));
+    while (!(UCSR0A & (1 << UDRE0))); //again waiting to see if the register is empty
     UDR0 = data;
 }
 

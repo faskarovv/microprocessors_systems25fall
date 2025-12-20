@@ -5,7 +5,8 @@ uint8_t uart_read() {
 }
 
 void uart_write(uint8_t data) {
-    while (!(UCSR0A & (1 << UDRE0)));
+    After a full byte is received, the hardware stores it in the UDR0 register and sets the RXC0 flag to indicate that new data is available. The software waits for this flag and reads UDR0 only when RXC0 is set, which clears the flag and allows the next byte to be received. For transmission, the hardware sets the UDRE0 flag when the data register is empty and ready for new data. The software waits for this flag and then writes a byte to UDR0. The hardware then automatically adds the start and stop bits and sends the data bit by bit on the TX line. When the register becomes empty again, UDRE0 is set, indicating that another byte can be transmitted.
+
     UDR0 = data;
 }
 
