@@ -1,11 +1,4 @@
 //week 10 task3 sender
-void uart_init() {
-    UBRR0H = 0;
-    UBRR0L = 103;                   // 9600 baud @ 16 MHz
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);  // enable RX and TX
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8N1
-}
-
 uint8_t uart_read() {
     while (!(UCSR0A & (1 << RXC0)));
     return UDR0;
@@ -17,7 +10,11 @@ void uart_write(uint8_t data) {
 }
 
 void setup() {
-    uart_init();
+
+    UBRR0H = 0;
+    UBRR0L = 103;                   // 9600 baud @ 16 MHz
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0);  // enable RX and TX
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8N1
 }
 
 void loop() {
