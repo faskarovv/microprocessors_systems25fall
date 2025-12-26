@@ -12,7 +12,7 @@ uint8_t rotl8(uint8_t x, uint8_t r) {
 
 //encrypt
 uint8_t encrypt(uint8_t p) {
-    return rotl8(p ^ KEY, 3);
+    return rotl8(p ^ KEY, 3); 
 }
 
 //baud rate 9600
@@ -20,7 +20,7 @@ void uart_init(void) {
     uint16_t ubrr = 103;   // 16MHz / (16*9600) - 1
 
     UBRR0H = (ubrr >> 8);
-    UBRR0L = ubrr;
+    UBRR0L = ubrr; //baud rate 9600
 
     UCSR0B = (1 << TXEN0);                 // Enable TX
     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8 data bits, 1 stop, no parity

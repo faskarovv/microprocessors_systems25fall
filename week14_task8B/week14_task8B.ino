@@ -23,7 +23,7 @@ void uart_init(void) {
 
 uint8_t uart_receive(void) {
     while (!(UCSR0A & (1 << RXC0))); //waiting for the status flag
-    return UDR0;
+    return UDR0; //data register
 }
 
 int main(void) {
